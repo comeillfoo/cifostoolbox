@@ -8,8 +8,8 @@ lsthreads = lambda pid: [ "ls", f'/proc/{pid}/task' ]
 # ls -l /proc/{pid}/fd | grep -oE '[^ ]+$' | tail -n +2
 def lsfd( pid ):
     cmd = f"sudo ls -l /proc/{pid}/fd | grep -oE '[^ ]+$' | tail -n +2"
-    ls = sp.Popen( cmd, shell=True, stdout=sp.PIPE, stderr=sp.STDOUT )
-    return ls.communicate( )[ 0 ]
+    sudols = sp.Popen( cmd, shell=True, stdout=sp.PIPE, stderr=sp.STDOUT )
+    return sudols.communicate( )[ 0 ]
 
 def is_running( pid ):
     try:
