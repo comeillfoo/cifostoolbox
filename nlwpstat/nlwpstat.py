@@ -7,12 +7,6 @@ from datetime import datetime # to watch the time
 
 lsthreads = lambda pid: [ "ls", f'/proc/{pid}/task' ]
 
-# ls -l /proc/{pid}/fd | grep -oE '[^ ]+$' | tail -n +2
-def lsfd( pid ):
-    cmd = f"sudo ls -l /proc/{pid}/fd | grep -oE '[^ ]+$' | tail -n +2"
-    sudols = sp.Popen( cmd, shell=True, stdout=sp.PIPE, stderr=sp.STDOUT )
-    return sudols.communicate( )[ 0 ]
-
 def is_running( pid ):
     try:
         os.kill( pid, 0 )
@@ -23,8 +17,8 @@ def is_running( pid ):
 
 def list_threads( pid ):
     if ( is_running( pid ) ):
-        return list( map( lambda tid: int( tid ),
-                    sp.run( lsthreads( pid ), check=True, stdout=sp.PIPE ).stdout.decode( 'UTF-8' ).splitlines() ) )
+        return list( filter( lambda tid: tid != pid, list( map( lambda tid: int( tid ),
+                    sp.run( lsthreads( pid ), check=True, stdout=sp.PIPE ).stdout.decode( 'UTF-8' ).splitlines() ) ) ) )
     else:
         return []
 
@@ -36,20 +30,7 @@ def report( pid ):
     print( pid, ":", ( "running" if pisrun else "closed" ), file=sys.stderr )
 
     if pisrun:
-        tids = list_threads( pid ) # list of threads' pid
-        print( "threads:", ", ".join( list( map( lambda tid: str( tid ), tids ) ) ), file=sys.stderr )
-        for tid in tids:
-            try:
-                # list of files that opened by thread with id
-                fds = list( lsfd( tid ).decode( 'UTF-8' ).splitlines() )
-                for fd in fds:
-                    tstamp = datetime.now()
-                    print( tid, fd, tstamp )
-
-            except sp.CalledProcessError as e:
-                print( "error in subprocess:", e.output.decode( "UTF-8" ), file=sys.stderr )
-            except FileNotFoundError as fnfe:
-                print( "File", fnfe.filename, "not found", file=sys.stderr )
+        print( datetime.now(), len( list_threads( pid ) ) ) # count threads
     else:
         exit( 0 )
 
