@@ -26,7 +26,7 @@ regexs = list( map( lambda regex: re.compile( regex ),
 #"([0-9]+) forwarded",
 #"([0-9]+) incoming packets discarded",
 "([0-9]+) incoming packets delivered",
-#"([0-9]+) requests sent out",
+"([0-9]+) requests sent out",
 #"([0-9]+) outgoing packets dropped",
 ] ) )
 
@@ -63,12 +63,13 @@ parameters = [ # "Forwarding",
 
 
 def ipstat_plot( data ):
+    plt.rcParams["figure.figsize"] = 16, 9
     plt.grid()
     xs = [ x for x in range( len( data[ parameters[ 0 ] ] ) ) ]
     for key in data.keys():
         plt.plot( xs, data[ key ], label=key )
     plt.legend()
-    plt.savefig( 'ipstat.png', dpi=1200 )
+    plt.savefig( 'ipstat.png' )
 
 
 # 0: file script path

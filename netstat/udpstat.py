@@ -58,12 +58,13 @@ parameters = [ "Packs.Rec",
 
 
 def udpstat_plot( data ):
+    plt.rcParams["figure.figsize"] = 16, 9
     plt.grid()
     xs = [ x for x in range( len( data[ parameters[ 0 ] ] ) ) ]
     for key in data.keys():
         plt.plot( xs, data[ key ], label=key )
     plt.legend()
-    plt.savefig( 'udpstat.png', dpi=1200 )
+    plt.savefig( 'udpstat.png' )
 
 
 # 0: file script path
