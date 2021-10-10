@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+./nlwpstater.py `../getpid.sh $1` $2 $3 2>/dev/null | 

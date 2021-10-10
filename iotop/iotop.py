@@ -23,7 +23,6 @@ def load_io (pid, count):
 	return list(map( lambda load: float(load), io_load.communicate()[0].decode('UTF-8').splitlines()))
 
 
-
 def load_threads (pid, count):
 	
 	if is_running( pid ):

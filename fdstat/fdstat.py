@@ -4,22 +4,8 @@ import sys # to get cmd options
 import time # to sleep
 import subprocess as sp # to run external processes
 from datetime import datetime # to watch the time
-from lss import lsthreads, lsfd
+from lss import lsthreads, lsfd, is_running, list_threads
 
-def is_running( pid ):
-    try:
-        os.kill( pid, 0 )
-    except OSError:
-        return False
-    else:
-        return True
-
-def list_threads( pid ):
-    if ( is_running( pid ) ):
-        return list( map( lambda tid: int( tid ),
-                    sp.run( lsthreads( pid ), check=True, stdout=sp.PIPE ).stdout.decode( 'UTF-8' ).splitlines() ) )
-    else:
-        return []
 
 # define main files snapshotting function
 def report( pid ):

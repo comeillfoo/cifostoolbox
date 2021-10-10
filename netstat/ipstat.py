@@ -5,14 +5,7 @@ import time # to sleep
 import subprocess as sp # to run external processes
 import re # to get only useful information
 import matplotlib.pyplot as plt # to build graphs
-
-def is_running( pid ):
-    try:
-        os.kill( pid, 0 )
-    except OSError:
-        return False
-    else:
-        return True
+from lss import is_running
 
 def ipstat( pid ):
     cmd = f"sudo netstat -sp `../getpid.sh {pid}` | head -n 9"
