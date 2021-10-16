@@ -1,2 +1,4 @@
-*/__pychache__
+*/__pycache__
 netstat/*.png
+__pycache__
+logs
