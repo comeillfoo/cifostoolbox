@@ -4,3 +4,4 @@ __pycache__
 logs
 
 misc/scripts/pmaps_*
+misc/scripts/FlameGraph
