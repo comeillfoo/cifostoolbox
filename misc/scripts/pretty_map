@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+cat $1 | ./pretty_map.py | aha > $2 
