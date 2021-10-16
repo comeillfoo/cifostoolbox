@@ -2,3 +2,5 @@
 netstat/*.png
 __pycache__
 logs
+
+misc/scripts/pmaps_*
