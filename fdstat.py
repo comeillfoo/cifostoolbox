@@ -21,7 +21,7 @@ def report( pid, interval, count ):
                 # list of files that opened by thread with id
                 fds = list( lsfd( tid ).decode( 'UTF-8' ).splitlines() )
                 for fd in fds:
-                    tstamp = datetime.now().microsecond
+                    tstamp = datetime.now().microsecond / 1000
                     print( tid, fd, tstamp )
 
             except sp.CalledProcessError as e:
