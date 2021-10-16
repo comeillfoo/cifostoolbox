@@ -22,10 +22,6 @@ def report( pid, interval, count ):
     if ( pisrun ):
         tids = list_threads( pid ) # list of threads' pid
         print( "threads:", ", ".join( list( map( lambda tid: str( tid ), tids ) ) ), file=sys.stderr )
-        proc_load = list( map( lambda load: float( load ), get_io_load( pid, count ).decode( "UTF-8" ).splitlines() ) )
-        if ( proc_load == [] ):
-            proc_load = [ 0.0 ] * count 
-        print( pid, *proc_load )
         for tid in tids:
             thread_load = list( map( lambda load: float( load ), get_io_load( tid, count ).decode( "UTF-8" ).splitlines() ) )
             if ( thread_load == [] ):

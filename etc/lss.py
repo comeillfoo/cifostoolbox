@@ -22,7 +22,7 @@ def is_running( pid ):
 
 def list_threads( pid ):
     if ( is_running( pid ) ):
-        return list( filter( lambda tid: tid != pid, list( map( lambda tid: int( tid ),
-                    sp.run( lsthreads( pid ), check=True, stdout=sp.PIPE ).stdout.decode( 'UTF-8' ).splitlines() ) ) ) )
+        return list( map( lambda tid: int( tid ),
+                    sp.run( lsthreads( pid ), check=True, stdout=sp.PIPE ).stdout.decode( 'UTF-8' ).splitlines() ) )
     else:
         return []
