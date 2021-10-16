@@ -57,6 +57,7 @@ def main( argc, argv ):
             for key in data.keys():
                 plt.rcParams["figure.figsize"] = 16, 9
                 fig = plt.figure()
+                plt.title( key )
                 plt.plot( xs, data[ key ], label=key )
                 plt.grid()
                 plt.legend()
