@@ -9,7 +9,7 @@ def iostat_plot( data ):
         Xs = [ x for x in range( len( data[ key ] ) ) ]
         plt.plot( Xs, data[ key ], label=key )
     plt.legend( loc='lower right', framealpha = 0.25 )
-    plt.title( "IO %% average per thread" )
+    plt.title( "IO % average per thread" )
     plt.savefig( 'iostat.png' )
 
 
