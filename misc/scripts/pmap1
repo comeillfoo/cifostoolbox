@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+pmap -x `./getpid $1` > pmaps_$1/xmap.txt

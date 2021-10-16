@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+pmap -d `./getpid $1` > pmaps_$1/dmap.txt

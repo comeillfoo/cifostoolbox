@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+mkdir -p pmaps_$1
+./pmap0 $1
+./pmap1 $1
+./pmap2 $1
+./pmap3 $1
