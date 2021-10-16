@@ -12,7 +12,11 @@ def main( argc, argv ):
         print( "not enough parameters passed", file=sys.stderr )
     else:
         module_name = argv[ 1 ]
-        module = __import__( module_name, fromlist=[ "report" ] )
+        try: 
+            module = __import__( module_name, fromlist=[ "report" ] )
+        except ModuleNotFoundError:
+            print( "module:", module_name, "not found", file=sys.stderr )
+            exit( 1 )
         report = module.report
         params = argv[ 2: ]
         pid, interval, count = list( map( int, params ) )
@@ -21,9 +25,15 @@ def main( argc, argv ):
 
         # make a report count times with interval seconds
         while ( count > 0 ):
-            report( pid )
-            count -= 1
+            report( pid, interval, count )
+            if ( module_name == "iostat" ):
+                count = 0
+            else:
+                count -= 1
             time.sleep( interval )
 
 if __name__ == '__main__':
-    main( len( sys.argv ), sys.argv )
+    try:
+        main( len( sys.argv ), sys.argv )
+    except KeyboardInterrupt:
+        pass

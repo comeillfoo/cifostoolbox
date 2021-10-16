@@ -7,7 +7,7 @@ from lss import lsthreads, lsfd, is_running, list_threads
 
 
 # define main files snapshotting function
-def report( pid ):
+def report( pid, interval, count ):
     # is the main process running
     pisrun = is_running( pid )
 

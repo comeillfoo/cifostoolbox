@@ -1,2 +1,3 @@
 #!/usr/bin/bash
+mkdir -p logs
 ./main.py $1 `./getpid.sh $2` $3 $4 2>./logs/$1_log.txt

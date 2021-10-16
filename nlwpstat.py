@@ -6,13 +6,13 @@ from lss import lsthreads, is_running, list_threads
 
 
 # define main files snapshotting function
-def report( pid ):
+def report( pid, interval, count ):
     # is the main process running
     pisrun = is_running( pid )
 
     print( pid, ":", ( "running" if pisrun else "closed" ), file=sys.stderr )
 
     if pisrun:
-        print( datetime.now(), len( list_threads( pid ) ) ) # count threads
+        print( len( list_threads( pid ) ) ) # count threads
     else:
         exit( 0 )

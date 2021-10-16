@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt # to build graphs
 from lss import is_running
 
 def ipstat( pid ):
-    cmd = f"sudo netstat -sp `../getpid.sh {pid}` | head -n 9"
+    cmd = f"sudo netstat -sp {pid} | head -n 9"
     ipstat_proc = sp.Popen( cmd, shell=True, stdout=sp.PIPE, stderr=sp.STDOUT )
     return ipstat_proc.communicate( )[ 0 ]
 

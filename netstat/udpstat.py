@@ -15,7 +15,7 @@ def is_running( pid ):
         return True
 
 def udpstat( pid ):
-    cmd = f"sudo netstat -sp `../getpid.sh 3c627d` | head -n 39 | tail -n 6"
+    cmd = f"sudo netstat -sp {pid} | head -n 39 | tail -n 6"
     udpstat_proc = sp.Popen( cmd, shell=True, stdout=sp.PIPE, stderr=sp.STDOUT )
     return udpstat_proc.communicate( )[ 0 ]
 

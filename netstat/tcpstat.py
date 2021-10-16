@@ -15,7 +15,7 @@ def is_running( pid ):
         return True
 
 def tcpstat( pid ):
-    cmd = f"sudo netstat -sp `../getpid.sh 3c627d` | head -n 32 | tail -n 10"
+    cmd = f"sudo netstat -sp {pid} | head -n 32 | tail -n 10"
     tcpstat_proc = sp.Popen( cmd, shell=True, stdout=sp.PIPE, stderr=sp.STDOUT )
     return tcpstat_proc.communicate( )[ 0 ]
 
