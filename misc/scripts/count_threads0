@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+ps -o nlwp -p `./getpid $1` | grep -Eo "[0-9]+"

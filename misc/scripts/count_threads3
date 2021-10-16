@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+pid=`./getpid $1`
+echo $(( `ls -l /proc/$pid/task | wc -l` - 1 ))
