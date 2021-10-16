@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+lsof -r 1 | grep -E "$1" > $1_opened_files.txt

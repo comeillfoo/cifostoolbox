@@ -1,5 +1,12 @@
 # cifostoolbox
 
+## Requirements
+
++ `ps, pidstat`
++ `iotop`
++ `netstat`
++ `lsof`
+
 ## Basic launch
 
 `./main [tool_name] [report period:ms] [number of iterations]`
