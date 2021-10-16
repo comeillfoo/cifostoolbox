@@ -1,4 +1,4 @@
 #!/usr/bin/bash
-./ipstat.py `../getpid.sh $1` $2 $3
-./tcpstat.py `../getpid.sh $1` $2 $3
-./udpstat.py `../getpid.sh $1` $2 $3
+./netstat.py tcp `../getpid.sh $1` $2 $3
+./netstat.py udp `../getpid.sh $1` $2 $3
+./netstat.py ip `../getpid.sh $1` $2 $3
