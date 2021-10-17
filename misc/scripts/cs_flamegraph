@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+sudo perf record -a -g -e sched:sched_switch -e sched:sched_stat_sleep -e sched:sched_stat_wait -p `./getpid $1` -- sleep 50
+sudo perf script | FlameGraph/stackcollapse-perf.pl | FlameGraph/flamegraph.pl --color=wakeup --title="Context Switches" > cs.svg
