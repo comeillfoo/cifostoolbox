@@ -5,3 +5,4 @@ logs
 
 misc/scripts/pmaps_*
 misc/scripts/FlameGraph
+misc/scripts/*.data

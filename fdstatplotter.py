@@ -8,7 +8,7 @@ def fdstat_plot( data ):
 
     for key in data.keys():
         data[ key ][ 0 ].sort()
-        plt.plot( data[ key ][ 0 ], data[ key ][ 1 ], label=key )
+        plt.plot( data[ key ][ 0 ], data[ key ][ 1 ], 'o', label=key )
     plt.legend( loc='lower right', framealpha = 0.25 )
     plt.title( "Files opened by threads" )
     plt.savefig( 'fdstat.png' )

@@ -6,6 +6,8 @@
 + `iotop`
 + `netstat`
 + `lsof`
++ `FlameGraph`
++ `perf`
 
 ## Basic launch
 
