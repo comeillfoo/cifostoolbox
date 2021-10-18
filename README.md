@@ -17,7 +17,10 @@
 
 + `fdstat` -- shows the opened files through the time
 + `nlwpstat` -- shows the number of threads opened by process through the time
-+ `nlwpstat` -- shows the states of threads
++ `nlwpstater` -- shows the states of threads
++ `netstat` -- shows the statistics of ip, tcp, udp protocols
++ `iostat` -- shows the files opened by all threads of the process
++ `pidstat` -- shows the cpu % load of the process
 
 ## TODOs
 
