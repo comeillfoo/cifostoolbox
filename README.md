@@ -9,7 +9,7 @@
 + `FlameGraph`
 + `perf`
 
-## About our lord and saviour -- getpid.sh
+## About our lord and saviour -- getpid
 
 `getpid` is the script for defining the process id by its name
 
