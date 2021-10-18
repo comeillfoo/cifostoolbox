@@ -18,3 +18,7 @@
 + `fdstat` -- shows the opened files through the time
 + `nlwpstat` -- shows the number of threads opened by process through the time
 + `nlwpstat` -- shows the states of threads
+
+## TODOs
+
++ add statistics from `/proc/[pid]/io`
