@@ -9,9 +9,19 @@
 + `FlameGraph`
 + `perf`
 
-## Basic launch
+## About our lord and saviour -- getpid.sh
+
+`getpid` is the script for defining the process id by its name
+
+Usage: `./getpid [process_name]`
+
+## Basic usage
 
 `./main [tool_name] [report period:ms] [number of iterations]`
+
+### usage for plotting
+
+`./main [tool_name] [report period:ms] [number of iterations] | ./[tool_name]plotter.py`
 
 ## Featured tools
 
