@@ -14,26 +14,26 @@ def stat( pid ):
 
 
 regexs = list( map( lambda regex: re.compile( regex ),
-[ "Forwarding: ([0-9]+)",
+[ # "Forwarding: ([0-9]+)",
 "([0-9]+) total packets received",
-"([0-9]+) with invalid addresses", 
-"([0-9]+) forwarded",
-"([0-9]+) incoming packets discarded",
+# "([0-9]+) with invalid addresses", 
+# "([0-9]+) forwarded",
+# "([0-9]+) incoming packets discarded",
 "([0-9]+) incoming packets delivered",
 "([0-9]+) requests sent out",
-"([0-9]+) outgoing packets dropped",
+# "([0-9]+) outgoing packets dropped",
 ] ) )
 
 
 script = lambda ripdata : [ int( re.search( regex, ripdata ).groups( 0 )[ 0 ] ) for regex in regexs ]
 
 
-parameters = [ "Forwarding",
+parameters = [ # "Forwarding",
 "Total.Packs.Received",
-"Packs.Inv.Addrs",
-"Forwarded",
-"Inc.Packs.Discarded",
+# "Packs.Inv.Addrs",
+# "Forwarded",
+# "Inc.Packs.Discarded",
 "Inc.Packs.Delivered",
 "Req.Sent",
-"Out.Packs.Dropped",
+# "Out.Packs.Dropped",
 ]

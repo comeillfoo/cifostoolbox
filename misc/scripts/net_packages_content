@@ -1,3 +1,8 @@
 #!/usr/bin/bash
-ports=`sudo netstat -pa | grep "$1" | grep -Eo ":([0-9]+)+" | grep -Eo "([0-9]+)+" | sed -z 's/\n/ or /g;s/ or $/\n/'`
-sudo tcpdump -X -i any port $ports
+ports_string=`sudo netstat -pa | grep "$1" | grep -Eo ":([0-9]+)+" | grep -Eo "([0-9]+)+" | sed -z 's/\n/, /g;s/, $/\n/'`
+IFS=', ' read -r -a ports <<< "$ports_string"
+for port in "${ports[@]}"
+do
+  echo "net_packages_content: listening on port ${port}"
+  sudo timeout 1m sudo tcpflow -cDgi any port "${port}" -S enable_report=NO
+done

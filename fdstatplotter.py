@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt # to build graphs
 from sys import stdin # to read from stdin
 
 def fdstat_plot( data ):
-    plt.rcParams["figure.figsize"] = 16, 9
+    plt.rcParams["figure.figsize"] = 20, 9
     plt.grid()
 
     for key in data.keys():
@@ -15,20 +15,22 @@ def fdstat_plot( data ):
 
 
 def main():
-    files = set()
     times = []
     input = []
     threads = {}
     for line in stdin:
+        tid, file, tm = line.split( ' ', maxsplit = 3 )
+        if ( file.startswith( 'socket:' ) ):
+            continue
         input.append( line )
-        tid, file, tm = line.split( " " )
         threads[ tid ] = ( [], [] )
-        files.add( file )
         times.append( float( tm ) )
 
+    mintime = min( times )
+
     for line in input:
-        tid, file, tm = line.split( " " )
-        threads[ tid ][ 0 ].append( float( tm ) )
+        tid, file, tm = line.split( ' ', maxsplit = 3 )
+        threads[ tid ][ 0 ].append( float( tm ) - mintime )
         threads[ tid ][ 1 ].append( file )
 
     fdstat_plot( threads )

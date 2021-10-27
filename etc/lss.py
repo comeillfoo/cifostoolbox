@@ -2,13 +2,16 @@
 import subprocess as sp # to run external processes
 import os
 
-lsthreads = lambda pid: [ "ls", f'/proc/{pid}/task' ]
+lsthreads = lambda pid: [ "sudo", "ls", f'/proc/{pid}/task' ]
 
 # ls -l /proc/{pid}/fd | grep -oE '[^ ]+$' | tail -n +2
 def lsfd( pid ):
     cmd = f"sudo ls -l /proc/{pid}/fd | grep -oE '[^ ]+$' | tail -n +2"
-    sudols = sp.Popen( cmd, shell=True, stdout=sp.PIPE, stderr=sp.STDOUT )
-    return sudols.communicate( )[ 0 ]
+    sudols = sp.Popen( cmd, shell=True, stdout=sp.PIPE, stderr=sp.PIPE )
+    if ( not sudols.communicate( )[ 1 ] ):
+        return sudols.communicate( )[ 0 ]
+    else:
+        return b''
 
 
 def is_running( pid ):
