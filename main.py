@@ -26,10 +26,7 @@ def main( argc, argv ):
         # make a report count times with interval seconds
         while ( count > 0 ):
             report( pid, interval, count )
-            if ( module_name == "iostat" ):
-                count = 0
-            else:
-                count -= 1
+            count -= 1
             time.sleep( interval )
 
 if __name__ == '__main__':

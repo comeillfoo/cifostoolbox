@@ -6,7 +6,7 @@ lsthreads = lambda pid: [ "sudo", "ls", f'/proc/{pid}/task' ]
 
 # ls -l /proc/{pid}/fd | grep -oE '[^ ]+$' | tail -n +2
 def lsfd( pid ):
-    cmd = f"sudo ls -l /proc/{pid}/fd | grep -oE '[^ ]+$' | tail -n +2"
+    cmd = f"sudo ls -l /proc/{pid}/fd 2>/dev/null | grep -oE '[^ ]+$' | tail -n +2"
     sudols = sp.Popen( cmd, shell=True, stdout=sp.PIPE, stderr=sp.PIPE )
     if ( not sudols.communicate( )[ 1 ] ):
         return sudols.communicate( )[ 0 ]
