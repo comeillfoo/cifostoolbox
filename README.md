@@ -17,11 +17,11 @@ Usage: `./getpid [process_name]`
 
 ## Basic usage
 
-`./main [tool_name] [report period:ms] [number of iterations]`
+`./main [tool_name] [process name] [report period:ms] [number of iterations]`
 
 ### usage for plotting
 
-`./main [tool_name] [report period:ms] [number of iterations] | ./[tool_name]plotter.py`
+`./main [tool_name] [process name] [report period:ms] [number of iterations] | ./[tool_name]plotter.py`
 
 ## Featured tools
 
