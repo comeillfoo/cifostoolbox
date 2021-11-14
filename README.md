@@ -13,7 +13,7 @@
 
 `getpid` is the script for defining the process id by its name
 
-Usage: `./getpid [process_name]`
+__DEPRECATED:__ Usage: `./getpid [process_name]`; __USE `pidof -s` instead__
 
 ## Basic usage
 
