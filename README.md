@@ -2,6 +2,7 @@
 
 ## Requirements
 
+### Linux Utilities
 + `ps, pidstat`
 + `iotop`
 + `netstat`
@@ -9,19 +10,18 @@
 + `FlameGraph`
 + `perf`
 
-## About our lord and saviour -- getpid
-
-`getpid` is the script for defining the process id by its name
-
-__DEPRECATED:__ Usage: `./getpid [process_name]`; __USE `pidof -s` instead__
+### Python Libraries
++ `pipe`
++ `matplotlib`
++ `os, sys, time`
 
 ## Basic usage
 
-`./main [tool_name] [process name] [report period:ms] [number of iterations]`
+`./cifrec [tool_name] [process name] [report period:ms] [number of iterations]`
 
 ### usage for plotting
 
-`./main [tool_name] [process name] [report period:ms] [number of iterations] | ./[tool_name]plotter.py`
+`./cifrec [tool_name] [process name] [report period:ms] [number of iterations] | ./[tool_name]plotter.py`
 
 ## Featured tools
 
@@ -34,4 +34,4 @@ __DEPRECATED:__ Usage: `./getpid [process_name]`; __USE `pidof -s` instead__
 
 ## TODOs
 
-+ add statistics from `/proc/[pid]/io`
++ there is nothing to do
