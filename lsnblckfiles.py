@@ -4,6 +4,7 @@ import subprocess as sp # to run external processes
 import re
 import os # to resolve symbolic links
 from lss import lsthreads, is_running, list_threads
+from pipe import select
 
 
 refileflag = re.compile( ".?(.*)?<==.*flags:\t(\d+)?", re.DOTALL )
@@ -41,7 +42,7 @@ def report( pid, interval, count ):
     print( pid, ":", ( "running" if pisrun else "closed" ), file=sys.stderr )
     if ( pisrun ):
         tids = list_threads( pid ) # list of threads' pid
-        print( "threads:", ", ".join( list( map( lambda tid: str( tid ), tids ) ) ), file=sys.stderr )
+        print( "threads:", ", ".join( list( tids | select( lambda tid: str( tid ) ) ) ), file=sys.stderr )
         for tid in tids:
             rawfiles = [ rfile for rfile in lsfilesflag( tid ).decode( "UTF-8" ).split( "==>" ) if rfile != '' ]
             for rfile in rawfiles:

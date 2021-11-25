@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-pmap `./getpid $1` > pmaps_$1/pmap.txt
+pmap `pidof -s $1` > pmaps_$1/pmap.txt

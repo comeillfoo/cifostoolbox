@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import subprocess as sp # to run external processes
 import os
+from pipe import select
 
 lsthreads = lambda pid: [ "sudo", "ls", f'/proc/{pid}/task' ]
 
@@ -25,7 +26,7 @@ def is_running( pid ):
 
 def list_threads( pid ):
     if ( is_running( pid ) ):
-        return list( map( lambda tid: int( tid ),
-                    sp.run( lsthreads( pid ), check=True, stdout=sp.PIPE ).stdout.decode( 'UTF-8' ).splitlines() ) )
+        thread_ids = sp.run( lsthreads( pid ), check=True, stdout=sp.PIPE ).stdout.decode( 'UTF-8' ).splitlines()
+        return list( thread_ids | select( lambda tid: int( tid ) ) )
     else:
         return []

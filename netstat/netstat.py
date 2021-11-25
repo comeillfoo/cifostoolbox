@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import sys
 import time
 from lss import is_running
+from pipe import select
 
 
 # 0: file script path
@@ -27,7 +28,7 @@ def main( argc, argv ):
         parameters = module.parameters
 
         params = argv[ 2: ]
-        pid, interval, count = list( map( int, params ) )
+        pid, interval, count = list( params | select( int ) )
         interval = float( interval ) / 1000
         print( f'pid={pid}', f'interval={interval}', f'count={count}', file=sys.stderr )
 

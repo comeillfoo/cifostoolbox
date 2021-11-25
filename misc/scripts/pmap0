@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-cat /proc/`./getpid $1`/maps > pmaps_$1/procmap.txt
+cat /proc/`pidof -s $1`/maps > pmaps_$1/procmap.txt

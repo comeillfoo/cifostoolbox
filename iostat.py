@@ -5,6 +5,7 @@ import subprocess as sp # to run external processes
 from datetime import datetime # to watch the time
 from lss import lsthreads, is_running, list_threads
 import re
+from pipe import select
 
 
 # sudo iotop -bkp {pid} -n 1 | grep -Eo "%.*" | grep -Eo "[0-9]+\.[0-9]+" - deprecated
@@ -26,11 +27,13 @@ def report( pid, interval, count ):
     print( pid, ":", ( "running" if pisrun else "closed" ), file=sys.stderr )
     if ( pisrun ):
         tids = list_threads( pid ) # list of threads' pid
-        print( "threads:", ", ".join( list( map( lambda tid: str( tid ), tids ) ) ), file=sys.stderr )
-        read_bytes, write_bytes = list( map( lambda raw: int( re.search( rechar, raw ).groups( 0 )[ 0 ] ) / 1024, get_io_load( pid ).decode( "UTF-8" ).splitlines() ) )
+        print( "threads:", ", ".join( list( tids | select( lambda tid: str( tid ) ) ) ), file=sys.stderr )
+        io_loads = get_io_load( pid ).decode( "UTF-8" ).splitlines()
+        read_bytes, write_bytes = list( io_loads | select( lambda raw: int( re.search( rechar, raw ).groups( 0 )[ 0 ] ) / 1024 ) )
         print( read_bytes, write_bytes )
         # for tid in tids:
-            # thread_load = list( map( lambda load: float( load ), get_io_load( tid, count ).decode( "UTF-8" ).splitlines() ) )
+            # tid_io_loads = get_io_load( tid, count ).decode( "UTF-8" ).splitlines()
+            # thread_load = list( select( tid_io_loads | lambda load: float( load ) ) )
             # if ( thread_load == [] ):
             #     thread_load = [ 0.0 ] * count
             # print( tid, *thread_load )

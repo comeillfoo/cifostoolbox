@@ -1,4 +1,4 @@
 #!/usr/bin/bash
-./netstat.py tcp `pidof $1` $2 $3
-./netstat.py udp `pidof $1` $2 $3
-./netstat.py ip `pidof $1` $2 $3
+./netstat.py tcp `pidof -s $1` $2 $3
+./netstat.py udp `pidof -s $1` $2 $3
+./netstat.py  ip `pidof -s $1` $2 $3

@@ -4,7 +4,7 @@ import time # to sleep
 import subprocess as sp # to run external processes
 from datetime import datetime # to watch the time
 from lss import lsthreads, lsfd, is_running, list_threads
-
+from pipe import select
 
 # define main files snapshotting function
 def report( pid, interval, count ):
@@ -15,7 +15,7 @@ def report( pid, interval, count ):
 
     if pisrun:
         tids = list_threads( pid ) # list of threads' pid
-        print( "threads:", ", ".join( list( map( lambda tid: str( tid ), tids ) ) ), file=sys.stderr )
+        print( "threads:", ", ".join( list( tids | select( lambda tid: str( tid ) ) ) ), file=sys.stderr )
         for tid in tids:
             try:
                 # list of files that opened by thread with id

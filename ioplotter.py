@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import matplotlib.pyplot as plt # to build graphs
 from sys import stdin # to read from stdin
+from pipe import select
 
 def iostat_plot( kbreads, kbwrites ):
     Xs = [ x for x in range( len( kbreads ) ) ]
@@ -24,7 +25,7 @@ def iostat_plot( kbreads, kbwrites ):
 def main():
     kbreads, kbwrites = [], []
     for line in stdin:
-        rkb, wkb = list( map( lambda raw: float( raw ), line.split( " " ) ) )
+        rkb, wkb = list( line.split( " " ) | select( lambda raw: float( raw ) ) )
         kbreads.append( rkb )
         kbwrites.append( wkb )
     iostat_plot( kbreads, kbwrites )
