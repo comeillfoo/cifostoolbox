@@ -1,3 +1,0 @@
-#!/usr/bin/bash
-mkdir -p logs
-./main.py $1 `pidof -s $2` $3 $4 2>./logs/$1_$2_log.txt
